@@ -1,2 +1,2 @@
 # makey-nature
-Thingy with boids
+A little randomly generated world experiment.
