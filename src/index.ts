@@ -1,9 +1,11 @@
 import { BoidOrchestrator } from './boid';
 import { Clock, Camera, Scene, Renderer, Geometry, 
   Material, Mesh, PerspectiveCamera, BoxGeometry, 
-  MeshNormalMaterial, WebGLRenderer, MeshBasicMaterial, Vector3 } from 'three';
+  MeshNormalMaterial, WebGLRenderer, MeshBasicMaterial, Vector3, Color } from 'three';
 import Stats from 'stats.js';
 import { initGUI, initBoidGUI } from './boidGUI';
+import { generateBirdMesh } from './BirdMeshGenerator';
+import { COLORS } from './Colors';
 
 class Game {
   public camera: Camera;
@@ -27,6 +29,7 @@ class Game {
     this.camera.lookAt(new Vector3());
  
     this.scene = new Scene();
+    // this.scene.background = new Color(0x8aebf1);
  
     this.geometry = new BoxGeometry( 10, 10, 10 );
     this.material = new MeshBasicMaterial({wireframe: true});
@@ -37,6 +40,7 @@ class Game {
  
     this.renderer = new WebGLRenderer( { antialias: true } );
     this.renderer.setSize( window.innerWidth, window.innerHeight );
+    // this.renderer.setClearColor(0x8aebf1);
     this.clock = new Clock();
     document.body.appendChild( this.renderer.domElement );
 
@@ -45,7 +49,7 @@ class Game {
 
     // this.makeExtrudedShape();
     const boidBehavior = {
-      amount: 500,
+      amount: 10,
       maxEffectDistance: 5, // 5
       cohesionDistance: 5, // 5
       cohesionForce: .01, // .01
@@ -62,6 +66,7 @@ class Game {
     this.stats = new Stats();
     this.stats.showPanel( 0 ); // 0: fps, 1: ms, 2: mb, 3+: custom
     document.body.appendChild( this.stats.dom );
+    generateBirdMesh(this.scene, new Vector3(0,0,0), false);
   }
 
   // public makeExtrudedShape() {

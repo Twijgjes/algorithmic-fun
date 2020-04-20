@@ -19,5 +19,4 @@ export function initBoidGUI(gui: dat.GUI, boidBehavior: BoidProperties, boidOrch
   bbF.add(boidBehavior, "alignmentForce", .01, 1);
   bbF.add(boidOrchestrator, "destroyBoids");
   bbF.add(boidOrchestrator, "createBoids");
-
 }
