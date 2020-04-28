@@ -60,6 +60,8 @@ export function generateBirdMesh(scene: Scene, position: Vector3, animated: bool
   const geometry = new LatheGeometry( path );
   const material = new MeshBasicMaterial( { color: 0xffff00 } );
   const lathe = new Mesh( geometry, material );
+  lathe.scale.multiplyScalar(20);
+  lathe.rotateZ(1);
   parent.add(lathe);
 
   // const scaleFunction = (i: number, distance: number) => {

@@ -1,5 +1,5 @@
 import { BoidOrchestrator } from './boid';
-import { Clock, Camera, Scene, Renderer, Geometry, 
+import { Clock, Camera, Scene, Geometry, 
   Material, Mesh, PerspectiveCamera, BoxGeometry, 
   MeshNormalMaterial, WebGLRenderer, MeshBasicMaterial, Vector3, Color } from 'three';
 import Stats from 'stats.js';
@@ -10,7 +10,7 @@ import { COLORS } from './Colors';
 class Game {
   public camera: Camera;
   public scene: Scene; 
-  public renderer: Renderer;
+  public renderer: WebGLRenderer;
   public geometry: Geometry;
   public material: Material;
   public mesh: Mesh;
@@ -40,7 +40,8 @@ class Game {
  
     this.renderer = new WebGLRenderer( { antialias: true } );
     this.renderer.setSize( window.innerWidth, window.innerHeight );
-    // this.renderer.setClearColor(0x8aebf1);
+    this.renderer.setClearColor(COLORS.SKY);
+
     this.clock = new Clock();
     document.body.appendChild( this.renderer.domElement );
 
@@ -49,7 +50,7 @@ class Game {
 
     // this.makeExtrudedShape();
     const boidBehavior = {
-      amount: 10,
+      amount: 100,
       maxEffectDistance: 5, // 5
       cohesionDistance: 5, // 5
       cohesionForce: .01, // .01
